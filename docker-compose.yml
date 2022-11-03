@@ -1,0 +1,27 @@
+version: "3.9"
+
+service:
+  mysqlbd:
+    container_name: mysqlbd
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd1234
+    ports:
+        3306:3306
+    volumes:
+        /home/mysqldata:/var/lib/mysql
+
+  spring_app:
+    container_name: tpachat
+    image: tpachat
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd1234
+    ports:
+        9090:8090
+    depends_on:
+        mysqlbd
+
+    
+	 	
