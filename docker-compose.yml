@@ -1,14 +1,28 @@
+<<<<<<< HEAD
 version : "3.3"
 
 services:
+=======
+version: "3.9"
+
+service:
+>>>>>>> 95124c2544224b45db886f55a17f4d5ca23a8646
   mysqlbd:
     container_name: mysqlbd
     image: mysql:8
     restart: unless-stopped
     environment:
+<<<<<<< HEAD
       MYSQL_ROOT_PASSWORD: pwd1234       
     volumes:
             -  /home/mysqldata:/var/lib/mysql
+=======
+      MYSQL_ROOT_PASSWORD: pwd1234
+    ports:
+        3306:3306
+    volumes:
+        /home/mysqldata:/var/lib/mysql
+>>>>>>> 95124c2544224b45db886f55a17f4d5ca23a8646
 
   spring_app:
     container_name: tpachat
@@ -17,9 +31,18 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: pwd1234
     ports:
+<<<<<<< HEAD
       -  9090:8089
     depends_on:
       - mysqlbd
 
    
 
+=======
+        9090:8090
+    depends_on:
+        mysqlbd
+
+    
+	 	
+>>>>>>> 95124c2544224b45db886f55a17f4d5ca23a8646
