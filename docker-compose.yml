@@ -1,0 +1,25 @@
+version : "3.3"
+
+services:
+  mysqlbd:
+    container_name: mysqlbd
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd1234       
+    volumes:
+            -  /home/mysqldata:/var/lib/mysql
+
+  spring_app:
+    container_name: tpachat
+    image: tpachat
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd1234
+    ports:
+      -  9090:8089
+    depends_on:
+      - mysqlbd
+
+   
+
